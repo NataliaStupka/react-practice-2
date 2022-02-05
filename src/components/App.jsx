@@ -11,16 +11,16 @@ class App extends Component {
       //делаем метод, что бы потом его передать в форму, и через него вернуть, что ввели в форму 
       //сюда приходит pokemonName
       handleFormSubmit = pokemonName => {
-        console.log('in App:', pokemonName);
+        // console.log('in App:', pokemonName);
         this.setState({ pokemonName });
       }
 
       render() {
-        return (<div >
+        return (<div style={{ maxWidth: 1170, margin: '0 auto', padding: 20 }}>
           App
           <PokemonForm onSubmitQwe={this.handleFormSubmit} />
+          <PokemonInfo pokemonName={this.state.pokemonName}/>
           <ToastContainer autoClose={3000} />
-          <PokemonInfo />
           </div>
         );
       }

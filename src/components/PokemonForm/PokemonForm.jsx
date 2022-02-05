@@ -12,7 +12,7 @@ export default class PokemonForm extends Component {
     //обновляет pokemonName при каждом вводе на input
     handleNameChange = event => {
         this.setState({ pokemonName: event.currentTarget.value.toLowerCase() })
-        console.log('in form:', event.currentTarget.value)
+        // console.log('in form:', event.currentTarget.value)
 }
 
     handleSubmit = event => {
