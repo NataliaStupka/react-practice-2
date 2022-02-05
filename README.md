@@ -1,5 +1,8 @@
 http запрос
 
+- установлен npm install react-icons --save (иконки)
+- замена alert
+
 # Getting Started with Create React App
 
 This project was bootstrapped with
