@@ -5,12 +5,19 @@ import PokemonPendingView from '../PokemonPendingView';
 import pokemonAPI from '../../servises/pokemon-api';
 
 
+const Status = {
+  IDLE: 'idle',              //спокойное
+  PENDING: 'pending',      //загрузка
+  RESOLVED: 'resolved',      //результат
+  REJECTED: 'rejected',       //ошибка 
+};
+
 export default class PokemonInfo extends Component {
     state = {
         pokemon: 'null',
         // loading: false,       //после введения состояние loading не нужен, 'pending' его заменяет
         error: null,
-        status: 'idle',      //по умолчанию 
+        status: Status.IDLE,      //по умолчанию 
 }
 
     //есдли предыдущий пропс покемонName и следующий не равны = делаем фетч
@@ -24,13 +31,13 @@ export default class PokemonInfo extends Component {
             //перед загрузкой говорю loading: true, а после загрузки false
             //также перед загрузкой очищаю покемон
             // this.setState({ loading: true, pokemon: null });
-            this.setState({ status: 'pending' });
+            this.setState({ status: Status.PENDING });
 
 
             pokemonAPI
                 .fetchPokemon(nextName)    //вызываем функцию
-                .then(pokemon => this.setState({ pokemon, status: 'resolved' }))
-                .catch(error => this.setState({error, status: 'rejected'}))          //словит ошибку
+                .then(pokemon => this.setState({ pokemon, status: Status.RESOLVED }))
+                .catch(error => this.setState({error, status: Status.REJECTED}))          //словит ошибку
                 // .finally(() => this.setState({ loading: false }))     //не нужен, теперь все сделает status: 'rejected'
     }
 }
