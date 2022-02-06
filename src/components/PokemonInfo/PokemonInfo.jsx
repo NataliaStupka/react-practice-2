@@ -1,10 +1,16 @@
 import { Component } from 'react';
+import PokemonErrorView from '../PokemonErrorView';
+import PokemonDataView from '../PokemonDataView';
+import PokemonPendingView from '../PokemonPendingView';
+import pokemonAPI from '../../servises/pokemon-api';
 
 
 export default class PokemonInfo extends Component {
     state = {
         pokemon: 'null',
-        loading: false
+        // loading: false,       //после введения состояние loading не нужен, 'pending' его заменяет
+        error: null,
+        status: 'idle',      //по умолчанию 
 }
 
     //есдли предыдущий пропс покемонName и следующий не равны = делаем фетч
@@ -16,39 +22,65 @@ export default class PokemonInfo extends Component {
             // console.log('Изменилось имя покемона');
            
             //перед загрузкой говорю loading: true, а после загрузки false
-            this.setState({ loading: true });
-            fetch(`https://pokeapi.co/api/v2/pokemon/${nextName}`)
-                .then(res => res.json())
-                .then(pokemon => this.setState({ pokemon }))
-                .finally(() => this.setState({ loading: false }))
+            //также перед загрузкой очищаю покемон
+            // this.setState({ loading: true, pokemon: null });
+            this.setState({ status: 'pending' });
+
+
+            pokemonAPI
+                .fetchPokemon(nextName)    //вызываем функцию
+                .then(pokemon => this.setState({ pokemon, status: 'resolved' }))
+                .catch(error => this.setState({error, status: 'rejected'}))          //словит ошибку
+                // .finally(() => this.setState({ loading: false }))     //не нужен, теперь все сделает status: 'rejected'
     }
 }
 
     render() {
         //дестроктуризация
-        const { pokemon, loading } = this.state;
+        const { pokemon, error, status } = this.state;
         const { pokemonName } = this.props;
-console.log('????', pokemon.sprites)
 
-        return (
-            <div>
-                {loading && <div>Загружаем...</div>}
-                {/* если нету this.props.pokemonName то выводим */}
-                {!pokemonName && <div>Введите имя покемона.</div>}
-                {pokemon && (
-                    <div>
-                    <p>{pokemon.name}</p>
-                    <img
-                        src={pokemon.sprites}
-                        alt=""
-                        width="300" 
+        //Стейт-машина
+        //перепишем через 4 состояния (простой, загрузка, ошибка, resolved
+        if (status === 'idle') {
+            return <div>Введите имя покемона.</div>
+        }
+        if (status === 'pending') {
+            // return <div>Загружаем...</div>
+            return <PokemonPendingView pokemonName={pokemonName}/>
+        }
+        if (status === 'rejected') {
+            // return <h1>{error.message}</h1>
+            return <PokemonErrorView message={error.message} />;
+        }
+        if (status === 'resolved') {
+            return <PokemonDataView pokemon={pokemon}/>;      //пропом передаем целиком покемона
+}
+  //перепишем через 4 состояния (простой, загрузка, ошибка, resolved
+        // return (
+        //     <div>
+        //         {/* если есть ошибка */}
+        //         {error && <h1>{error.message}</h1>}
+                
+        //         {loading && <div>Загружаем...</div>}
+        //         {/* если нету this.props.pokemonName то выводим */}
+        //         {!pokemonName && <div>Введите имя покемона.</div>}
+        //         {pokemon && (
+        //             <div>
+        //             <p>{pokemon.name}</p>
+        //             <img
+        //                 src={pokemon.sprites.other['official-artwork'].front_default}
+        //                 alt={pokemon.name}
+        //                 width="300" 
                         
-                    />
-                    </div>
-                )}
-            </div>)
+        //             />
+        //             </div>
+        //         )}
+        //     </div>)
     }
 };
+
+//----------------------------------------------------------------------------------------------------
 
 //  !!!!  не находит other в пути картинки
 // {pokemon.sprites.other['official-artwork'].front_default}
