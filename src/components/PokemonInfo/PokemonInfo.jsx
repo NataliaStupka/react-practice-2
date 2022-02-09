@@ -20,7 +20,7 @@ export default class PokemonInfo extends Component {
         status: Status.IDLE,      //по умолчанию 
 }
 
-    //есдли предыдущий пропс покемонName и следующий не равны = делаем фетч
+    //если предыдущий пропс покемонName и следующий не равны = делаем фетч
     componentDidUpdate(prevProps, prevState) {
         const prevName = prevProps.pokemonName;
         const nextName = this.props.pokemonName;

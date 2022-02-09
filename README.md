@@ -1,7 +1,10 @@
+ДОБАВИТЬ ПРАКТИКУ 3 МОДУЛЬ 5 ЗАНЯТИЕ ОН-ЛАЙН(МОЯ ГРУППА) с 1ч,10мин 5ветка
+lifecel
+
 http запрос
 
 - установлен npm install react-icons --save (иконки)
-- замена alert
+- ???? замена alert (toast не срабатывает)
 
 # Getting Started with Create React App
 
