@@ -1,6 +1,6 @@
 import { ImSpinner } from 'react-icons/im';
 import PokemonDataView from './PokemonDataView';
-import pendingImage from './pending.png';
+import pendingImage from '../../miniatures/pending.png';
 
 const styles = {
   //   spinner: {

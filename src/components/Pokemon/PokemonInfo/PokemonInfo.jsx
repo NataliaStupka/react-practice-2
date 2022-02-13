@@ -2,7 +2,7 @@ import { Component } from 'react';
 import PokemonErrorView from '../PokemonErrorView';
 import PokemonDataView from '../PokemonDataView';
 import PokemonPendingView from '../PokemonPendingView';
-import pokemonAPI from '../../servises/pokemon-api';
+import pokemonAPI from '../../../servises-api/pokemon-api';
 
 
 const Status = {

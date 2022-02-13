@@ -1,10 +1,15 @@
-ДОБАВИТЬ ПРАКТИКУ 3 МОДУЛЬ 5 ЗАНЯТИЕ ОН-ЛАЙН(МОЯ ГРУППА) с 1ч,10мин 5ветка
-lifecel
+Pokemons, ВидеоПлеер, Reader
 
 http запрос
 
+- для video установленна библеотека react-player: npm install react-player
+- стилизация npm install --save styled-components
 - установлен npm install react-icons --save (иконки)
 - ???? замена alert (toast не срабатывает)
+
+Нужно прописать propTypes
+
+ <!-------------------------------------------------------------------------->
 
 # Getting Started with Create React App
 

@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import { ToastContainer} from 'react-toastify'; //библеотека вместо alert
-import PokemonForm from './PokemonForm/PokemonForm';
-import PokemonInfo from './PokemonInfo/PokemonInfo';
+import PokemonForm from './Pokemon/PokemonForm/PokemonForm';
+import PokemonInfo from './Pokemon/PokemonInfo/PokemonInfo';
 
+import { Example } from './Video/Example.js'; //video
+
+import { Reader } from './Reader/Reader'; 
+import publications from '../data/publications.json';
+
+//Первый был Покемон, остальное докинула, что бы не создавать отдельные проекты
 class App extends Component {
       state = {
-      pokemonName: ''
+        pokemonName: ''
+        
       }
       
       //делаем метод, что бы потом его передать в форму, и через него вернуть, что ввели в форму 
@@ -16,11 +23,18 @@ class App extends Component {
       }
 
       render() {
-        return (<div style={{ maxWidth: 1170, margin: '0 auto', padding: 20 }}>
-          App
+        return (
+          <div style={{ maxWidth: 1170, margin: '0 auto', padding: 20 }}>
+          App POKEMON
           <PokemonForm onSubmitQwe={this.handleFormSubmit} />
           <PokemonInfo pokemonName={this.state.pokemonName}/>
           <ToastContainer autoClose={3000} />
+
+          {/* ---videoPlayer--- */}
+            <Example />
+            
+          {/*--- Reader ---*/}
+            <Reader items={publications}/>
           </div>
         );
       }
