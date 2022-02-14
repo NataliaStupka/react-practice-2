@@ -6,7 +6,7 @@ import PokemonInfo from './Pokemon/PokemonInfo/PokemonInfo';
 import { Example } from './Video/Example.js'; //video
 
 import { Reader } from './Reader/Reader'; 
-import publications from '../data/publications.json';
+// import publications from '../data/publications.json'; //в reader сделали через бекэнд
 
 //Первый был Покемон, остальное докинула, что бы не создавать отдельные проекты
 class App extends Component {
@@ -34,7 +34,8 @@ class App extends Component {
             <Example />
             
           {/*--- Reader ---*/}
-            <Reader items={publications}/>
+            {/* <Reader items={publications} /> */}
+            <Reader />
           </div>
         );
       }
