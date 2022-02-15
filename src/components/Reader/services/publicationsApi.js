@@ -11,3 +11,15 @@ export const getPublications = async () => {
   const response = await axios.get('/publicatoins');
   return response.data;
 };
+
+//метод для добавления
+export const addPublication = async data => {
+  const response = await axios.post('/publications', data);
+  return response.data;
+};
+
+//метод для удаления
+export const deletePublication = async id => {
+  const response = await axios.delete(`/publications/${id}`);
+  return response.data;
+};

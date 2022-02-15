@@ -3,7 +3,8 @@ import { Controls } from './Controls';
 import { Progress } from './Progress';
 import { Publications } from './Publication';
 
-import { getPublications } from './services/publicationsApi';
+import { getPublications, deletePublication } from './services/publicationsApi';
+import { CreatePublication } from './CreatePublication';
 
 // const LS_KEY = 'reader_item_index'; // -.) для LocalStorage
 
@@ -20,6 +21,21 @@ export class Reader extends Component {
         this.setState(state => ({ index: state.index + value }))
     }
     
+    deleteItem = async (id) => {
+        try {
+            await deletePublication(id)
+            this.setState(prevState => ({
+                // для каждого айтема возвращаем только те item id которых не совпадают с 
+                items: prevState.items.filter(item => item.id !== id)
+            }));
+        } catch (error) {
+            console.log(error);
+}
+
+    
+}
+
+
     // II) запрос с бекэнда
     async componentDidMount() {
         // делаем http запрос, сдесь прописан сокращенный вариант, в проекте прописать правилно
@@ -60,11 +76,15 @@ export class Reader extends Component {
         
         return (
             <div style={{ border: '1px solid black', margin: '0 auto', padding: 20 }}>
+                <CreatePublication />
                 {!isLoading && totalItems === 0 && <div>Еще нет публикаций!</div>} 
                 {isLoading && (<div>Загрузка...</div>)}
 
                 {!isLoading && totalItems > 0 && (
                     <>
+                <button
+                    type="button"
+                    onClick={() => this.deleteItem(currentItem.id)}>Delete Publication</button>
                      <Controls
                     current={index + 1}
                     total={totalItems}

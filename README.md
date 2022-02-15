@@ -3,6 +3,7 @@ Pokemons, ВидеоПлеер, Reader
 http запрос через axios (для Reader, CreatePublication)
 
 - установлен npm i axios
+- установлоен Formik ( npm install formik --save)
 - для video установленна библеотека react-player: npm install react-player
 - стилизация npm install --save styled-components
 - установлен npm install react-icons --save (иконки)
