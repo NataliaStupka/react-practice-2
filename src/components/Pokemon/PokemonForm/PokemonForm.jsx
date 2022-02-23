@@ -9,12 +9,12 @@ export default class PokemonForm extends Component {
         pokemonName: '',
     };
 
-    //обновляет pokemonName при каждом вводе на input
+    //обновляет pokemonName при каждом вводе на input --------
     handleNameChange = event => {
         this.setState({ pokemonName: event.currentTarget.value.toLowerCase() })
         // console.log('in form:', event.currentTarget.value)
 }
-
+//обработка формы(не отсылаем пустой масив; передача введенного значения в инпут) -------
     handleSubmit = event => {
         event.preventDefault();
 
@@ -22,8 +22,7 @@ export default class PokemonForm extends Component {
         //trim - убирает пробелы слева/справа
         if (this.state.pokemonName.trim() === '') {
          return alert('Введите имя покемона');
-        //    return toast('Введите имя покемона.');  --НЕ срабатывает
-            
+        //    return toast('Введите имя покемона.');  --НЕ срабатывает   
         }
 
         //вызываю метод из App и предаю ему значение pokemonName, и он вернется в  App

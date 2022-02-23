@@ -24,10 +24,12 @@ class App extends Component {
 
       render() {
         return (
-          <div style={{ maxWidth: 1170, margin: '0 auto', padding: 20 }}>
+          <>
+             <div style={{ maxWidth: 1170, margin: '0 auto', padding: 20 }}>
           App POKEMON
           <PokemonForm onSubmitQwe={this.handleFormSubmit} />
-          <PokemonInfo pokemonName={this.state.pokemonName}/>
+            <PokemonInfo pokemonName={this.state.pokemonName} />
+            
           <ToastContainer autoClose={3000} />
 
           {/* ---videoPlayer--- */}
@@ -36,7 +38,12 @@ class App extends Component {
           {/*--- Reader ---*/}
             {/* <Reader items={publications} /> */}
             <Reader />
-          </div>
+
+            </div>
+            <div>
+              <h2>--------------------- Hooks --------------------------------------------</h2>
+            </div>
+         </>
         );
       }
 }

@@ -94,7 +94,10 @@ export class Reader extends Component {
                     current={index + 1}
                     total={totalItems}
                 />
-                {currentItem && <Publications item={currentItem }/>}
+                        {currentItem && <Publications item={currentItem} />}
+                        
+
+                        
                     </>
                 )
                 
